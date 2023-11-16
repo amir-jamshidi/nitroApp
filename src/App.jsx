@@ -1,7 +1,7 @@
 function App() {
   return (
     <>
-      <p>TEST</p>
+      <p className="bg-red-500">TEST</p>
     </>
   );
 }
