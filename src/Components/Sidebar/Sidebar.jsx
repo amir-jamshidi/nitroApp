@@ -20,8 +20,8 @@ const Sidebar = () => {
         </div>
         <ul className="mb-3 mt-8 mx-2 flex flex-col divide-y divide-white/10">
           {categories.map((category) => (
-            <Link to={`category/${category.href}`}>
-              <li className="" key={category._id}>
+            <Link key={category._id} to={`category/${category.href}`}>
+              <li className="">
                 <div className="flex justify-start items-center gap-x-2  rounded px-2 py-2">
                   <span className="w-2 h-2 inline-block bg-orange-500 rounded-full"></span>
                   <span className="text-slate-200 font-morabba-medium">

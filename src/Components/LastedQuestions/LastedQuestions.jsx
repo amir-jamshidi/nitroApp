@@ -15,8 +15,8 @@ const LastedQuestions = () => {
     <div>
       <ul className="flex flex-col mx-4 gap-y-1">
         {mainQuestions.map((question) => (
-          <Link to={`/question/${question._id}`}>
-            <li key={question._id}>
+          <Link key={question._id} to={`/question/${question._id}`}>
+            <li>
               <div className="py-2 px-4 rounded bg-slate-700">
                 <div className="flex">
                   <div className="flex-1 flex items-center gap-x-2">
