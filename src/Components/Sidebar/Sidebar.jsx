@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainCategories } from "../../Redux/Reducers/mainCategories";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -17,16 +18,18 @@ const Sidebar = () => {
             دسته بندی سوالات
           </p>
         </div>
-        <ul className="my-3 mx-2 flex flex-col gap-y-2">
+        <ul className="mb-3 mt-8 mx-2 flex flex-col divide-y divide-white/10">
           {categories.map((category) => (
-            <li className="" key={category._id}>
-              <div className="flex justify-start items-center gap-x-2">
-                <span className="w-2 h-2 inline-block bg-orange-500 rounded-full"></span>
-                <span className="text-slate-200 font-morabba-medium">
-                  {category.title}
-                </span>
-              </div>
-            </li>
+            <Link to={`category/${category.href}`}>
+              <li className="" key={category._id}>
+                <div className="flex justify-start items-center gap-x-2  rounded px-2 py-2">
+                  <span className="w-2 h-2 inline-block bg-orange-500 rounded-full"></span>
+                  <span className="text-slate-200 font-morabba-medium">
+                    {category.title}
+                  </span>
+                </div>
+              </li>
+            </Link>
           ))}
         </ul>
       </div>

@@ -1,3 +1,4 @@
+import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
 import LastedQuestions from "../Components/LastedQuestions/LastedQuestions";
 import Sidebar from "../Components/Sidebar/SideBar";
@@ -20,12 +21,11 @@ const Main = () => {
               <section className="pt-8">
                 <LastedQuestions />
               </section>
-          
-          
             </div>
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 };
