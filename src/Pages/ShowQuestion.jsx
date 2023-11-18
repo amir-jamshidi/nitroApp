@@ -23,7 +23,12 @@ const ShowQuestion = () => {
               جزئیــات سوال
             </p>
           </div>
-          <div className="mt-8 p-2">
+          <div className="flex justify-center  mt-4">
+            <p className="text-center font-morabba-medium text-slate-200 text-sm bg-blue-500 rounded px-2">
+              ایجاد شده در تاریخ : <span className="font-dana-bold text-sm">22/08/02</span>
+            </p>
+          </div>
+          <div className="mt-4 p-2">
             <div className="rounded p-2">
               <div className="flex items-center gap-x-2">
                 <img
@@ -46,15 +51,15 @@ const ShowQuestion = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-end gap-x-1">
-                <span className="font-morabba-medium bg-green-500 rounded text-slate-200 px-2 text-sm py-0.5">
-                  تعداد پاسخ ها : 10
-                </span>
-                <span className="font-morabba-medium bg-green-500 rounded text-slate-200 px-2 text-sm py-0.5">
+              <div className="flex justify-end gap-x-1 mt-3">
+                <span className="font-morabba-medium bg-red-500 rounded text-slate-200 px-2 text-sm py-0.5">
                   وضعیت : کاربر به جواب نرسیده
                 </span>
-                <span className="font-morabba-medium bg-green-500 rounded text-slate-200 px-2 text-sm py-0.5">
+                <span className="font-morabba-medium bg-violet-500 rounded text-slate-200 px-2 text-sm py-0.5">
                   دسته بندی سوال : جاوا اسکریپت
+                </span>
+                <span className="font-morabba-medium bg-green-500 rounded text-slate-200 px-2 text-sm py-0.5">
+                  تعداد پاسخ ها : 10
                 </span>
               </div>
             </div>
