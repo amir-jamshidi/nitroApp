@@ -1,11 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import categoryReducer from './Reducers/mainCategories'
+import mainCategoryReducer from './Reducers/mainCategories'
+import mainQuestionReducer from './Reducers/mainQuestions'
+
+
 const store = configureStore({
     reducer: {
-        categories: categoryReducer
+        mainCategories: mainCategoryReducer,
+        mainQuestions: mainQuestionReducer
     }
 })
 
-console.log(store.getState());
+//console.log(store.getState());
 
 export default store;

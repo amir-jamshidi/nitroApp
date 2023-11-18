@@ -4,7 +4,7 @@ import { getMainCategories } from "../../Redux/Reducers/mainCategories";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.categories);
+  const categories = useSelector((state) => state.mainCategories);
   useEffect(() => {
     dispatch(getMainCategories());
   }, []);
