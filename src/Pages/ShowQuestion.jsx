@@ -3,6 +3,7 @@ import Header from "../Components/Header/Header";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleQuestion } from "../Redux/Reducers/singleQuestion";
+import { StarRounded } from "@mui/icons-material";
 
 const ShowQuestion = () => {
   const { id } = useParams();
@@ -83,7 +84,18 @@ const ShowQuestion = () => {
                   />
                   <div className="mt-2.5">
                     <p className="text-slate-400 font-morabba-medium text-sm">
-                      {answer.creatorID.fullname}
+                      <span className="font-morabba-medium">
+                        {answer.creatorID.fullname}
+                      </span>
+                      {answer.isTrueAnswer && (
+                        <span className="border bg-blue-500 border-white/5 rounded mx-1 px-1 font-dana-bold">
+                          {answer.creatorID.score}
+                          <StarRounded
+                            fontSize="small"
+                            className="text-amber-400"
+                          />
+                        </span>
+                      )}
                     </p>
                     <p className="font-morabba-medium text-slate-200 mt-0.5">
                       {answer.body}
