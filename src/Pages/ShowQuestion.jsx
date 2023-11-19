@@ -24,8 +24,9 @@ const ShowQuestion = () => {
             </p>
           </div>
           <div className="flex justify-center  mt-4">
-            <p className="text-center font-morabba-medium text-slate-200 text-sm bg-blue-500 rounded px-2">
-              ایجاد شده در تاریخ : <span className="font-dana-bold text-sm">22/08/02</span>
+            <p className="text-center font-morabba-medium text-slate-200 text-sm bg-blue-500 rounded px-2 py-0.5">
+              ایجاد شده در تاریخ :{" "}
+              <span className="font-dana-bold text-sm">22/08/02</span>
             </p>
           </div>
           <div className="mt-4 p-2">
@@ -64,6 +65,34 @@ const ShowQuestion = () => {
               </div>
             </div>
           </div>
+        </div>
+        <div className="mt-8 bg-slate-800 rounded p-2">
+          <div className="border-b border-b-white/5 pb-2">
+            <p className="font-morabba-medium text-center text text-slate-200 text-lg">
+              پاسخ هــا
+            </p>
+          </div>
+          <ul className="mt-8 px-4">
+            {question?.answers?.map((answer) => (
+              <li>
+                <div className="flex gap-x-2">
+                  <img
+                    src="http://127.0.0.1:5000/media/profiles/userAvatar.png"
+                    className="w-16 h-16 rounded-full border border-white/5"
+                    alt=""
+                  />
+                  <div className="mt-2.5">
+                    <p className="text-slate-400 font-morabba-medium text-sm">
+                      {answer.creatorID.fullname}
+                    </p>
+                    <p className="font-morabba-medium text-slate-200 mt-0.5">
+                      {answer.body}
+                    </p>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </>
