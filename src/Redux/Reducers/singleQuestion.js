@@ -10,8 +10,10 @@ const slice = createSlice({
     initialState: [],
     extraReducers: builder => {
         builder.addCase(getSingleQuestion.fulfilled, (state, action) => {
-
             return action.payload
+        })
+        builder.addCase(addNewQuestion.fulfilled, (state, action) => {
+            
         })
     }
 })

@@ -19,7 +19,6 @@ const ShowQuestion = () => {
     dispatch(getSingleQuestion(id));
   }, []);
 
-  const addNewAnswer = () => {};
 
   return (
     <>
