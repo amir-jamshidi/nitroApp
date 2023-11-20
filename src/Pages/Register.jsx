@@ -1,9 +1,16 @@
 import { LocalPhoneRounded } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import baseApi from "./../Configs/Axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsLogin, setUserInfo } from "../Redux/Reducers/authInfos";
 
 const Register = () => {
+  const authInfos = useSelector((state) => state.authInfos);
+  console.log(authInfos);
+  const dispatch = useDispatch();
+  useEffect(() => {}, []);
+
   const [phone, setPhone] = useState("");
   const [verifyCode, setVerifyCode] = useState("");
   const [isShowVerify, setIsShowVerify] = useState(false);
@@ -13,7 +20,9 @@ const Register = () => {
     baseApi
       .post("auth/register", { phone })
       .then((response) => {
-        setIsShowVerify(true);
+        if (response.status === 201) {
+          setIsShowVerify(true);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -26,7 +35,15 @@ const Register = () => {
     baseApi
       .post("auth/confirm", { phone, code: verifyCode })
       .then((response) => {
-        console.log(response.data);
+        if (response.status === 201) {
+          dispatch(setIsLogin(true));
+          dispatch(setUserInfo(response.data.userInfo));
+
+          localStorage.setItem(
+            "auth",
+            JSON.stringify({ token: response.data.token })
+          );
+        }
       })
       .catch((error) => {
         console.log(error);
