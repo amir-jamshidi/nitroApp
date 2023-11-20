@@ -34,7 +34,7 @@
 }
 
 * {
-    font-family: 'dana';
+    font-family: 'morabba-medium';
 }
 
 /* width */
@@ -50,4 +50,8 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #1e293b;
+}
+
+.Toastify__toast {
+    direction: rtl !important;
 }

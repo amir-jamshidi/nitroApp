@@ -4,6 +4,8 @@ import baseApi from "./../Configs/Axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsLogin, setUserInfo } from "../Redux/Reducers/authInfos";
+import { toast } from "react-toastify";
+import { showToastSuccess } from "../Configs/Toast";
 
 const Register = () => {
   const authInfos = useSelector((state) => state.authInfos);
@@ -22,6 +24,7 @@ const Register = () => {
       .then((response) => {
         if (response.status === 201) {
           setIsShowVerify(true);
+          showToastSuccess("کد تایید برای شما ارسال شد");
         }
       })
       .catch((error) => {
@@ -38,7 +41,6 @@ const Register = () => {
         if (response.status === 201) {
           dispatch(setIsLogin(true));
           dispatch(setUserInfo(response.data.userInfo));
-
           localStorage.setItem(
             "auth",
             JSON.stringify({ token: response.data.token })
