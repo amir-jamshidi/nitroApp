@@ -18,7 +18,7 @@ const Sidebar = () => {
             دسته بندی سوالات
           </p>
         </div>
-        <ul className="mb-3 mt-8 mx-2 flex flex-col divide-y divide-white/10">
+        <ul className="mb-3 mt-8 mx-2 flex flex-col divide-y divide-white/5">
           {categories.map((category) => (
             <Link key={category._id} to={`category/${category.href}`}>
               <li className="">

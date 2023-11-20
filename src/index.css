@@ -53,5 +53,8 @@
 }
 
 .Toastify__toast {
-    direction: rtl !important;
+   direction: rtl !important;
+}
+.Toastify__toast-theme--dark {
+    background: #1e293b;
 }
