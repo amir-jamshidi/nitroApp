@@ -1,4 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import baseApi from "../../Configs/Axios";
+
+export const getMe = createAsyncThunk('authInfos/getMe', () => baseApi.get('auth/me').then(response => response.data))
 
 const slice = createSlice({
     name: 'authInfos',
@@ -13,6 +16,13 @@ const slice = createSlice({
         setUserInfo: (state, action) => {
             state.userInfo = action.payload
         }
+    }
+    ,
+    extraReducers: builder => {
+        builder.addCase(getMe.fulfilled, (state, action) => {
+            state.login = true;
+            state.userInfo = action.payload.userInfo
+        })
     }
 })
 
