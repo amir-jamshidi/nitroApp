@@ -3,6 +3,7 @@ import mainCategoryReducer from './Reducers/mainCategories'
 import mainQuestionReducer from './Reducers/mainQuestions'
 import singleQuestionReducer from './Reducers/singleQuestion'
 import authInfoReducer from './Reducers/authInfos'
+import allCategoryReducer from './Reducers/allCategories'
 
 
 const store = configureStore({
@@ -10,7 +11,8 @@ const store = configureStore({
         mainCategories: mainCategoryReducer,
         mainQuestions: mainQuestionReducer,
         singleQuestion: singleQuestionReducer,
-        authInfos: authInfoReducer
+        authInfos: authInfoReducer,
+        allCategories: allCategoryReducer
     }
 })
 

@@ -15,7 +15,7 @@ const Header = () => {
         <div className="flex h-full">
           <div className="flex-1 flex h-full justify-start items-center">
             <div className="flex justify-center items-center gap-x-1">
-              <Link to={"/login"}>
+              <Link to={"/add-question"}>
                 <button className="font-morabba-medium rounded-2xl text-slate-200 px-4 py-1.5 text-sm  bg-violet-500">
                   ایجاد ســوال
                 </button>
