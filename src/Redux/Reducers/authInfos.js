@@ -7,7 +7,9 @@ const slice = createSlice({
     name: 'authInfos',
     initialState: {
         login: false,
-        userInfo: null
+        userInfo: null,
+        questions: [],
+        saveQuestions: []
     },
     reducers: {
         setIsLogin(state, action) {
@@ -21,7 +23,9 @@ const slice = createSlice({
     extraReducers: builder => {
         builder.addCase(getMe.fulfilled, (state, action) => {
             state.login = true;
+            state.questions = action.payload.questions
             state.userInfo = action.payload.userInfo
+            state.saveQuestions = action.payload.saveQuestions
         })
     }
 })

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const QuestionItem = ({question}) => {
+const QuestionItem = ({ question }) => {
   return (
     <Link key={question._id} to={`/question/${question._id}`}>
       <li>
@@ -8,7 +8,7 @@ const QuestionItem = ({question}) => {
           <div className="flex">
             <div className="flex-1 flex items-center gap-x-2">
               <img
-                src="http://127.0.0.1:5000/media/profiles/userAvatar.png"
+                src={`http://127.0.0.1:5000/media/profiles/${question.creatorID.avatar}`}
                 className="w-14 h-14 rounded-full shrink-0"
                 alt=""
               />

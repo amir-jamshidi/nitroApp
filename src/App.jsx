@@ -7,8 +7,7 @@ import { getMe } from "./Redux/Reducers/authInfos";
 function App() {
   const routerApplication = useRoutes(routes);
   const dispatch = useDispatch();
-  const authInfos = useSelector(state=>state.authInfos);
-  console.log(authInfos);
+  
   useEffect(() => {
     dispatch(getMe());
   }, []);
