@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import baseApi from "../../Configs/Axios";
 
 export const getMe = createAsyncThunk('authInfos/getMe', () => baseApi.get('auth/me').then(response => response.data))
-
 const slice = createSlice({
     name: 'authInfos',
     initialState: {
