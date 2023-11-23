@@ -5,16 +5,21 @@ import { useEffect } from "react";
 import { getAllCategories } from "../Redux/Reducers/allCategories";
 import { Link } from "react-router-dom";
 import Footer from "../Components/Footer/Footer";
+import LoadingSection from "../Components/LoadingSection/LoadingSection";
 
 const Categories = () => {
-  const categories = useSelector((state) => state.allCategories);
+  const { allCategories, loading } = useSelector(
+    (state) => state.allCategories
+  );
   const dispatch = useDispatch();
 
-  console.log(categories);
+
 
   useEffect(() => {
     dispatch(getAllCategories());
   }, []);
+
+  if (loading) return <LoadingSection />;
 
   return (
     <>
@@ -24,7 +29,7 @@ const Categories = () => {
           <TitleSection title="همه دسته بندی ها" />
           <div className="mt-8 pb-4">
             <div className="grid grid-cols-3">
-              {categories?.map((category) => (
+              {allCategories?.map((category) => (
                 <Link to={`/category/${category.href}`}>
                   <div className="flex justify-start items-center gap-x-2 p-2 rounded hover:bg-slate-700 transition-colors">
                     <span className="w-3 h-3 inline-block bg-blue-500 rounded-full"></span>

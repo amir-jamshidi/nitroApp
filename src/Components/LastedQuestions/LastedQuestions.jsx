@@ -2,19 +2,24 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainQuestions } from "../../Redux/Reducers/mainQuestions";
 import { Link } from "react-router-dom";
+import LoadingSection from "../LoadingSection/LoadingSection";
 
 const LastedQuestions = () => {
   const dispatch = useDispatch();
-  const mainQuestions = useSelector((state) => state.mainQuestions);
+  const { mainQuestions, loading } = useSelector(
+    (state) => state.mainQuestions
+  );
 
   useEffect(() => {
     dispatch(getMainQuestions());
   }, []);
 
+  if (loading) return <LoadingSection />;
+
   return (
     <div>
       <ul className="flex flex-col mx-4 gap-y-1">
-        {mainQuestions.map((question) => (
+        {mainQuestions?.map((question) => (
           <Link key={question._id} to={`/question/${question._id}`}>
             <li>
               <div className="py-2 px-4 rounded bg-slate-700">
@@ -52,6 +57,11 @@ const LastedQuestions = () => {
           </Link>
         ))}
       </ul>
+      <Link to={"/questions"} className="flex">
+        <button className="flex-1 border border-white/10 py-2 rounded text-slate-300 mb-3 mx-4 mt-2">
+          همه دسته بندی ها
+        </button>
+      </Link>
     </div>
   );
 };

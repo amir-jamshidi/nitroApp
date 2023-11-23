@@ -2,13 +2,18 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMainCategories } from "../../Redux/Reducers/mainCategories";
 import { Link } from "react-router-dom";
+import LoadingSection from "../LoadingSection/LoadingSection";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
-  const categories = useSelector((state) => state.mainCategories);
+  const { mainCategories, loading } = useSelector(
+    (state) => state.mainCategories
+  );
   useEffect(() => {
     dispatch(getMainCategories());
   }, []);
+
+  if (loading) return <LoadingSection />;
 
   return (
     <aside className="w-80 bg-slate-800 rounded p-2">
@@ -19,7 +24,7 @@ const Sidebar = () => {
           </p>
         </div>
         <ul className="mb-3 mt-8 mx-2 flex flex-col divide-y divide-white/5">
-          {categories.map((category) => (
+          {mainCategories?.map((category) => (
             <Link key={category._id} to={`category/${category.href}`}>
               <li className="">
                 <div className="flex justify-start items-center gap-x-2  rounded px-2 py-2">
@@ -32,6 +37,11 @@ const Sidebar = () => {
             </Link>
           ))}
         </ul>
+        <Link to={"categories"} className="flex">
+          <button className="flex-1 mx-1 border border-white/10 py-2 rounded text-slate-300 mb-3">
+            همه دسته بندی ها
+          </button>
+        </Link>
       </div>
     </aside>
   );

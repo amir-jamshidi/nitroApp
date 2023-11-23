@@ -6,14 +6,18 @@ import { useEffect } from "react";
 import { getAllQuestions } from "../Redux/Reducers/allQuestion";
 import TitleSection from "../Components/TitleSection/TitleSection";
 import QuestionItem from "../Components/QuestionItem/QuestionItem";
+import LoadingSection from "../Components/LoadingSection/LoadingSection";
 
 const Questions = () => {
-  const questions = useSelector((state) => state.allQuestions);
+  const {allQuestions , loading} = useSelector((state) => state.allQuestions);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllQuestions());
   }, []);
+
+  console.log(loading);
+  if(loading) return <LoadingSection/>
 
   return (
     <>
@@ -23,7 +27,7 @@ const Questions = () => {
           <TitleSection title="همه سوال هــا" />
           <div className="mt-8 pb-4">
             <ul className="flex flex-col gap-y-1 px-4">
-              {questions?.map((question) => (
+              {allQuestions?.map((question) => (
                 <QuestionItem question={question} />
               ))}
             </ul>

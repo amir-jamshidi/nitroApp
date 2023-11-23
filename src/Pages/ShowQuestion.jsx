@@ -1,16 +1,19 @@
 import { useParams } from "react-router-dom";
 import Header from "../Components/Header/Header";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSingleQuestion } from "../Redux/Reducers/singleQuestion";
 import {
-  StarRounded,
+  addNewAnswerFn,
+  getSingleQuestion,
+} from "../Redux/Reducers/singleQuestion";
+import {
   ThumbUpRounded,
   VerifiedRounded,
 } from "@mui/icons-material";
 import Footer from "../Components/Footer/Footer";
 
 const ShowQuestion = () => {
+  const [body, setBody] = useState("");
   const { id } = useParams();
   const dispatch = useDispatch();
   const question = useSelector((state) => state.singleQuestion);
@@ -19,6 +22,12 @@ const ShowQuestion = () => {
     dispatch(getSingleQuestion(id));
   }, []);
 
+  const addNewAnswer = (e) => {
+    e.preventDefault();
+    dispatch(addNewAnswerFn({ body, questionID: question._id })).then(() => {
+      setBody("");
+    });
+  };
 
   return (
     <>
@@ -129,8 +138,13 @@ const ShowQuestion = () => {
             <textarea
               className="w-full min-h-[200px] max-h-[250px] rounded mt-8 bg-slate-700 p-2 font-morabba-medium text-slate-200 outline-none border-none"
               placeholder="متن پاسخ شما ..."
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
             ></textarea>
-            <button className="w-full bg-green-500 py-1 rounded text-slate-200 font-morabba-medium">
+            <button
+              onClick={addNewAnswer}
+              className="w-full bg-green-500 py-1 rounded text-slate-200 font-morabba-medium"
+            >
               ارسال پاسخ
             </button>
           </form>

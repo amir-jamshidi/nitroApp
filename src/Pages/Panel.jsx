@@ -2,15 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "../Components/Header/Header";
 import TitleSection from "../Components/TitleSection/TitleSection";
 import QuestionItem from "../Components/QuestionItem/QuestionItem";
-import { getMe } from "../Redux/Reducers/authInfos";
+import { editUserInfo, getMe } from "../Redux/Reducers/authInfos";
 import baseApi from "./../Configs/Axios";
-import {
-  AlternateEmailRounded,
-  LocalPhoneRounded,
-  PersonRounded,
-} from "@mui/icons-material";
-import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { AlternateEmailRounded, PersonRounded } from "@mui/icons-material";
+import { useState } from "react";
+import userPanelSchema from "../Utils/userPanelSchema";
+import { showToastError, showToastSuccess } from "../Configs/Toast";
 
 const Panel = () => {
   const authInfos = useSelector((state) => state.authInfos);
@@ -18,6 +15,7 @@ const Panel = () => {
 
   const [fullname, setFullname] = useState(authInfos?.userInfo?.fullname);
   const [email, setEmail] = useState(authInfos?.userInfo?.email);
+  const [disabled, setDisabeld] = useState(false);
 
   const changeProfileImage = async (e) => {
     const formData = new FormData();
@@ -26,18 +24,30 @@ const Panel = () => {
       .put("auth/profile", formData)
       .then((response) => {
         dispatch(getMe());
+        showToastSuccess("پروفایل شما تغییر کرد");
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  const editInfos = (e) => {
+  const editInfos = async (e) => {
     e.preventDefault();
     const newValues = {
       fullname: fullname ? fullname : authInfos.userInfo.fullname,
       email: email ? email : authInfos.userInfo.email,
     };
-    console.log(newValues);
+    try {
+      const valiadte = await userPanelSchema.validate(newValues);
+      if (valiadte) {
+        setDisabeld(true);
+        setTimeout(() => {
+          setDisabeld(false);
+        }, 3000);
+        dispatch(editUserInfo(newValues));
+      }
+    } catch (error) {
+      showToastError(error.message);
+    }
   };
 
   return (
@@ -65,7 +75,12 @@ const Panel = () => {
               </label>
             </div>
             <div className="mt-8">
-              <TitleSection title={"ویـرایش اطلاهـات من"} />
+
+              <div className="flex items-center">
+                <span className="flex-1 h-[1px] bg-white/5"></span>
+                <span className="mx-2 text-slate-300">ویرایش اطلاعات</span>
+                <span className="flex-1 h-[1px] bg-white/5"></span>
+              </div>
 
               <form action="" className="mt-8">
                 <div className="grid grid-cols-2 gap-x-1">
@@ -92,8 +107,15 @@ const Panel = () => {
                   </div>
                 </div>
                 <button
+                  disabled={
+                    email?.length < 5 || fullname?.length < 3 || disabled
+                  }
                   onClick={editInfos}
-                  className="mt-1 w-full bg-green-500 py-1 rounded text-slate-200 font-morabba-medium"
+                  className={`${
+                    email?.length < 5 || fullname?.length < 3
+                      ? "bg-slate-400"
+                      : "bg-green-500"
+                  } mt-1 w-full  py-1 rounded text-slate-200 font-morabba-medium`}
                 >
                   ثبت تغییــرات
                 </button>

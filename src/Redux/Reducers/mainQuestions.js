@@ -5,10 +5,18 @@ export const getMainQuestions = createAsyncThunk('mainQuestions/getMainQuestions
 
 const slice = createSlice({
     name: 'mainQuestions',
-    initialState: [],
+    initialState: {
+        loading: false,
+        mainQuestions: []
+    },
+
     extraReducers: builder => {
+        builder.addCase(getMainQuestions.pending, (state, action) => {
+            state.loading = true
+        })
         builder.addCase(getMainQuestions.fulfilled, (state, action) => {
-            return action.payload
+            state.loading = false
+            state.mainQuestions = action.payload
         })
     }
 })

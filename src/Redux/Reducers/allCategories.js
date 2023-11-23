@@ -5,10 +5,17 @@ export const getAllCategories = createAsyncThunk('allCategories/getAllCategories
 
 const slice = createSlice({
     name: 'allCategories',
-    initialState: [],
+    initialState: {
+        loading: false,
+        allCategories: []
+    },
     extraReducers: builder => {
         builder.addCase(getAllCategories.fulfilled, (state, action) => {
-            return action.payload
+            state.loading = false
+            state.allCategories = action.payload
+        })
+        builder.addCase(getAllCategories.pending, (state, action) => {
+            state.loading = true;
         })
     }
 })
