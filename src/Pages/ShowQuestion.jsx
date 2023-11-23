@@ -6,17 +6,15 @@ import {
   addNewAnswerFn,
   getSingleQuestion,
 } from "../Redux/Reducers/singleQuestion";
-import {
-  ThumbUpRounded,
-  VerifiedRounded,
-} from "@mui/icons-material";
+import { ThumbUpRounded, VerifiedRounded } from "@mui/icons-material";
 import Footer from "../Components/Footer/Footer";
+import LoadingSection from "../Components/LoadingSection/LoadingSection";
 
 const ShowQuestion = () => {
   const [body, setBody] = useState("");
   const { id } = useParams();
   const dispatch = useDispatch();
-  const question = useSelector((state) => state.singleQuestion);
+  const { question, loading } = useSelector((state) => state.singleQuestion);
 
   useEffect(() => {
     dispatch(getSingleQuestion(id));
@@ -28,6 +26,8 @@ const ShowQuestion = () => {
       setBody("");
     });
   };
+
+  if (loading) return <LoadingSection />;
 
   return (
     <>
@@ -50,7 +50,7 @@ const ShowQuestion = () => {
               <div className="flex items-center gap-x-2">
                 <img
                   className="w-20 h-20 rounded-full border border-white/10 self-start"
-                  src="http://127.0.0.1:5000/media/profiles/userAvatar.png"
+                  src={`http://127.0.0.1:5000/media/profiles/${question?.creatorID?.avatar}`}
                   alt=""
                 />
                 <div className="mt-4 w-full">
@@ -94,7 +94,7 @@ const ShowQuestion = () => {
                 <div className="flex flex-col">
                   <div className="flex gap-x-2">
                     <img
-                      src="http://127.0.0.1:5000/media/profiles/userAvatar.png"
+                      src={`http://127.0.0.1:5000/media/profiles/${answer.creatorID.avatar}`}
                       className="w-16 h-16 rounded-full border border-white/5"
                       alt=""
                     />

@@ -8,14 +8,21 @@ export const addNewAnswerFn = createAsyncThunk('singleQuestion/addNewQuestion', 
 
 const slice = createSlice({
     name: 'singleQuestion',
-    initialState: [],
+    initialState: {
+        loading: false,
+        question: {}
+    },
     extraReducers: builder => {
         builder.addCase(getSingleQuestion.fulfilled, (state, action) => {
-            return action.payload
+            state.loading = false
+            state.question = action.payload
+        })
+        builder.addCase(getSingleQuestion.pending, (state, action) => {
+            state.loading = true
         })
         builder.addCase(addNewAnswerFn.fulfilled, (state, action) => {
             showToastSuccess('پاسخ شما اضافه شد')
-            state.answers.push(action.payload)
+            state.question.answers.push(action.payload)
         })
     }
 })
