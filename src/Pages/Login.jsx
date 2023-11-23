@@ -77,31 +77,31 @@ const Login = () => {
 
   return (
     <div className="h-screen w-full flex justify-center items-center">
-      <div className="bg-slate-800 relative rounded min-w-[400px] px-4 py-4">
+      <div className="bg-slate-200 dark:bg-slate-800 relative rounded min-w-[400px] px-4 py-4">
         <RegisterLoading isLoading={isLoading} />
-        <h1 className="font-morabba-bold text-2xl text-center text-slate-200">
+        <h1 className="font-morabba-bold text-2xl text-center text-slate-800 dark:text-slate-200">
           ورود به حساب کاربــری
         </h1>
         <form action="" className="mt-8">
           {!isShowVerify ? (
-            <div className="flex justify-center items-center border border-white/5 rounded px-1 py-2 gap-x-2">
-              <LocalPhoneRounded className=" text-slate-200" />
+            <div className="flex justify-center items-center border border-black/10 dark:border-white/5 rounded px-1 py-2 gap-x-2">
+              <LocalPhoneRounded className=" text-slate-700 dark:text-slate-200" />
               <input
                 onChange={(e) => setPhone(e.target.value)}
                 value={phone}
                 type="text"
-                className="text-slate-200 font-morabba-medium w-full bg-transparent border-none outline-none"
+                className="text-slate-700 dark:text-slate-200 font-morabba-medium w-full bg-transparent border-none outline-none"
                 placeholder="شماره همـراه"
               />
             </div>
           ) : (
-            <div className="flex justify-center items-center border border-white/5 rounded px-1 py-2 gap-x-2">
-              <LocalPhoneRounded className=" text-slate-200" />
+            <div className="flex justify-center items-center border  border-black/10 dark:border-white/5 rounded px-1 py-2 gap-x-2">
+              <LocalPhoneRounded className="  text-slate-700 dark:text-slate-200" />
               <input
                 onChange={(e) => setVerifyCode(e.target.value)}
                 value={verifyCode}
                 type="text"
-                className="text-slate-200 font-morabba-medium w-full bg-transparent border-none outline-none"
+                className="text-slate-700 dark:text-slate-200 font-morabba-medium w-full bg-transparent border-none outline-none"
                 placeholder="کد تایید"
               />
             </div>
@@ -128,11 +128,11 @@ const Login = () => {
             </button>
           )}
         </form>
-        <span className="font-morabba text-slate-400 text-sm mt-3 inline-block">
+        <span className="font-morabba-medium dark:font-morabba text-slate-800 dark:text-slate-400 text-sm mt-3 inline-block">
           نمیتوانید وارد سیستم شوید ؟
         </span>
         <Link to={"/register"}>
-          <p className="text-blue-500 font-morabba text-sm ">
+          <p className="text-blue-500 font-morabba-medium dark:font-morabba text-sm ">
             حساب کاربری ندارم
           </p>
         </Link>

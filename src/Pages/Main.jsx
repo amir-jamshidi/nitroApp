@@ -13,7 +13,7 @@ const Main = () => {
           <div className="flex gap-x-3">
             <Sidebar />
             <div className="flex-1 rounded bg-slate-200 dark:bg-slate-800 p-2">
-              <div className="border-b border-b-white/5 pb-2">
+              <div className="pb-2">
                 <TitleSection title={"اخــرین سوالات"} />
               </div>
 

@@ -6,7 +6,14 @@ import {
   addNewAnswerFn,
   getSingleQuestion,
 } from "../Redux/Reducers/singleQuestion";
-import { ThumbUpRounded, VerifiedRounded } from "@mui/icons-material";
+import {
+  AccessTimeFilledRounded,
+  HelpRounded,
+  MessageRounded,
+  ThumbUpRounded,
+  VerifiedRounded,
+  WorkspacesRounded,
+} from "@mui/icons-material";
 import Footer from "../Components/Footer/Footer";
 import LoadingSection from "../Components/LoadingSection/LoadingSection";
 
@@ -33,17 +40,26 @@ const ShowQuestion = () => {
     <>
       <Header />
       <div className="container">
-        <div className="mt-14 bg-slate-800 p-2 rounded">
-          <div className="border-b border-b-white/5 pb-2">
-            <p className="font-morabba-medium text-center text text-slate-200 text-lg">
+        <div className="mt-14 bg-slate-200 dark:bg-slate-800 p-2 rounded">
+          <div className="border-b border-b-black/5 dark:border-b-white/5 pb-2">
+            <p className="font-morabba-medium text-center text text-slate-700 dark:text-slate-200 text-lg">
               جزئیــات سوال
             </p>
           </div>
-          <div className="flex justify-center  mt-4">
-            <p className="text-center font-morabba-medium text-slate-200 text-sm bg-blue-500 rounded px-2 py-0.5">
-              ایجاد شده در تاریخ :{" "}
-              <span className="font-dana-bold text-sm">22/08/02</span>
-            </p>
+          <div className="flex justify-center mt-8">
+            <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px] md:min-w-[80px]">
+              <AccessTimeFilledRounded
+                sx={{ width: 18, height: 18 }}
+                className="text-green-500"
+                fontSize="small"
+              />
+              <div>
+                <span className="text-sm text-slate-700">ایجاد شده در </span>
+                <span className="text-sm font-dana-bold text-slate-700">
+                  12/11/402
+                </span>
+              </div>
+            </div>
           </div>
           <div className="mt-4 p-2">
             <div className="rounded p-2">
@@ -54,37 +70,65 @@ const ShowQuestion = () => {
                   alt=""
                 />
                 <div className="mt-4 w-full">
-                  <span className="font-morabba-medium text-sm text-slate-400">
+                  <span className="font-morabba-medium text-sm text-slate-700 dark:text-slate-400">
                     {question?.creatorID?.fullname}
                   </span>
-                  <p className="font-morabba-medium text-lg text-slate-200">
+                  <p className="font-morabba-medium text-lg text-slate-800 dark:text-slate-200">
                     {question.title}
                   </p>
 
-                  <div className="border-t w-full border-t-white/5 pt-3 mt-3">
-                    <p className="font-morabba-medium text-slate-300 text-justify ">
+                  <div className="border-t w-full border-t-black/5 dark:border-t-white/5 pt-3 mt-3">
+                    <p className="font-morabba-medium text-slate-700 dark:text-slate-300 text-justify ">
                       {question.body}
                     </p>
                   </div>
                 </div>
               </div>
-              <div className="flex justify-end gap-x-1 mt-3">
-                <span className="font-morabba-medium bg-red-500 rounded text-slate-200 px-2 text-sm py-0.5">
-                  وضعیت : کاربر به جواب نرسیده
-                </span>
-                <span className="font-morabba-medium bg-violet-500 rounded text-slate-200 px-2 text-sm py-0.5">
-                  دسته بندی سوال : جاوا اسکریپت
-                </span>
-                <span className="font-morabba-medium bg-green-500 rounded text-slate-200 px-2 text-sm py-0.5">
-                  تعداد پاسخ ها : 10
-                </span>
+              <div className="flex mt-10 flex-col gap-y-1 md:flex-row justify-end gap-x-1 md:mt-3">
+                {question.isHasTrueAnswer ? (
+                  <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px]">
+                    <VerifiedRounded
+                      sx={{ width: 18, height: 18 }}
+                      className="text-green-500"
+                      fontSize="small"
+                    />
+                    <span className="text-sm">پاسخ داده شد</span>
+                  </div>
+                ) : (
+                  <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px] md:min-w-[125px]">
+                    <HelpRounded
+                      sx={{ width: 18, height: 18 }}
+                      className="text-red-500"
+                      fontSize="small"
+                    />
+                    <span className="text-sm">بدون پاسخ درست</span>
+                  </div>
+                )}
+                <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px] md:min-w-[120px]">
+                  <WorkspacesRounded
+                    sx={{ width: 18, height: 18 }}
+                    className="text-violet-500"
+                    fontSize="small"
+                  />
+                  <span className="text-sm"> {question.categoryID?.title}</span>
+                </div>
+
+                <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px] md:min-w-[80px]">
+                  <MessageRounded
+                    sx={{ width: 18, height: 18 }}
+                    className="text-green-500"
+                    fontSize="small"
+                  />
+                  <span className="text-sm">{question.answerCount} پاسخ</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="mt-8 bg-slate-800 rounded p-2">
-          <div className="border-b border-b-white/5 pb-2">
-            <p className="font-morabba-medium text-center text text-slate-200 text-lg">
+        <div className="mt-8 bg-slate-200 dark:bg-slate-800 rounded p-2">
+        <div className="border-b border-b-black/5 dark:border-b-white/5 pb-2">
+
+            <p className="font-morabba-medium text-center text text-slate-700 dark:text-slate-200 text-lg">
               پاسخ هــا
             </p>
           </div>
@@ -99,7 +143,7 @@ const ShowQuestion = () => {
                       alt=""
                     />
                     <div className="mt-2.5">
-                      <p className="text-slate-400 font-morabba-medium text-sm">
+                      <p className="text-slate-700 dark:text-slate-400 font-morabba-medium text-sm">
                         <span className="font-morabba-medium">
                           {answer.creatorID.fullname}
                         </span>
@@ -109,18 +153,20 @@ const ShowQuestion = () => {
                           </span>
                         )}
                       </p>
-                      <p className="font-morabba-medium text-slate-300 mt-0.5 ">
+                      <p className="font-morabba-medium text-slate-800 dark:text-slate-300 mt-0.5 ">
                         {answer.body}
                       </p>
                     </div>
                   </div>
                   <div className="flex justify-end mt-3">
-                    <div className="min-w-[70px] cursor-pointer hover:bg-blue-600 transition-colors text-slate-200 px-3 gap-x-1 border border-white/10 rounded-lg flex justify-center items-center">
+                    <p className="text-slate-700 dark:text-slate-200 font-dana-bold pt-2 mx-2">
+                      {answer.like}
+                    </p>
+                    <div className=" cursor-pointer dark:hover:bg-blue-600 transition-colors text-slate-200 p-2 rounded-full gap-x-1 border border-black/10 dark:border-white/10  flex justify-center items-center">
                       <ThumbUpRounded
                         fontSize="small"
-                        className="text-slate-200"
+                        className="text-slate-700 dark:text-slate-200"
                       />
-                      <p className="font-dana-bold pt-1">{answer.like}</p>
                     </div>
                   </div>
                 </div>
@@ -128,15 +174,15 @@ const ShowQuestion = () => {
             ))}
           </ul>
         </div>
-        <div className="mt-8 bg-slate-800 rounded p-2">
-          <div className="border-b border-b-white/5 pb-2">
-            <p className="font-morabba-medium text-center text text-slate-200 text-lg">
+        <div className="mt-8 bg-slate-200 dark:bg-slate-800 rounded p-2">
+          <div className="border-b border-b-black/5 dark:border-b-white/5 pb-2">
+            <p className="font-morabba-medium text-center text text-slate-700 dark:text-slate-200 text-lg">
               ارســـال پاسخ
             </p>
           </div>
           <form action="" className="mx-2 pb-4">
             <textarea
-              className="w-full min-h-[200px] max-h-[250px] rounded mt-8 bg-slate-700 p-2 font-morabba-medium text-slate-200 outline-none border-none"
+              className="w-full min-h-[200px] max-h-[250px] rounded mt-8 bg-slate-100 dark:bg-slate-700 p-2 font-morabba-medium text-slate-700 dark:text-slate-200 outline-none border-none"
               placeholder="متن پاسخ شما ..."
               value={body}
               onChange={(e) => setBody(e.target.value)}

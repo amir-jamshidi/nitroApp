@@ -23,7 +23,7 @@ const Questions = () => {
     <>
       <Header />
       <div className="container">
-        <div className="mt-14 p-2 bg-slate-800 rounded">
+        <div className="mt-14 p-2 bg-slate-200 dark:bg-slate-800 rounded">
           <TitleSection title="همه سوال هــا" />
           <div className="mt-8 pb-4">
             <ul className="flex flex-col gap-y-1 px-4">

@@ -54,7 +54,7 @@ const Panel = () => {
     <>
       <Header />
       <div className="container mt-14">
-        <div className="p-2 bg-slate-800 rounded mb-8">
+        <div className="p-2 bg-slate-200 dark:bg-slate-800 rounded mb-8">
           <TitleSection title={"اطلاعات حسـاب کاربری من"} />
           <div className="mt-8 px-4 pb-4">
             <div className="flex flex-col gap-y-4 justify-center items-center">
@@ -78,30 +78,30 @@ const Panel = () => {
 
               <div className="flex items-center">
                 <span className="flex-1 h-[1px] bg-white/5"></span>
-                <span className="mx-2 text-slate-300">ویرایش اطلاعات</span>
+                <span className="mx-2 text-slate-800 dark:text-slate-300">ویرایش اطلاعات</span>
                 <span className="flex-1 h-[1px] bg-white/5"></span>
               </div>
 
               <form action="" className="mt-8">
                 <div className="grid grid-cols-2 gap-x-1">
-                  <div className="flex justify-center items-center border border-white/5 rounded px-1 py-2 gap-x-2">
-                    <AlternateEmailRounded className=" text-slate-200" />
+                  <div className="flex justify-center items-center bg-slate-100 dark:bg-transparent border border-black/10 dark:border-white/5 rounded px-1 py-2 gap-x-2">
+                    <AlternateEmailRounded className="text-slate-700 dark:text-slate-200" />
 
                     <input
                       onChange={(e) => setEmail(e.target.value)}
                       defaultValue={authInfos?.userInfo?.email}
                       type="text"
-                      className="text-slate-200 font-morabba-medium w-full bg-transparent border-none outline-none"
+                      className="text-slate-700 dark:text-slate-200 font-morabba-medium w-full bg-transparent border-none outline-none"
                       placeholder="ایمیل شمـا"
                     />
                   </div>
-                  <div className="flex justify-center items-center border border-white/5 rounded px-1 py-2 gap-x-2">
-                    <PersonRounded className=" text-slate-200" />
+                  <div className="flex justify-center items-center bg-slate-100 dark:bg-transparent border border-black/10 dark:border-white/5 rounded px-1 py-2 gap-x-2">
+                    <PersonRounded className="text-slate-700 dark:text-slate-200 " />
                     <input
                       defaultValue={authInfos?.userInfo?.fullname}
                       onChange={(e) => setFullname(e.target.value)}
                       type="text"
-                      className="text-slate-200 font-morabba-medium w-full bg-transparent border-none outline-none"
+                      className="text-slate-700 dark:text-slate-200 font-morabba-medium w-full bg-transparent border-none outline-none"
                       placeholder="نـام شمــا"
                     />
                   </div>
@@ -123,7 +123,7 @@ const Panel = () => {
             </div>
           </div>
         </div>
-        <div className="p-2 bg-slate-800 rounded mb-8">
+        <div className="p-2 bg-slate-200 dark:bg-slate-800 rounded mb-8">
           <TitleSection title={"اخرین پرسش هــای من"} />
           <div className="mx-4 mt-8 pb-4">
             <ul className="flex flex-col gap-y-1">
@@ -133,7 +133,7 @@ const Panel = () => {
             </ul>
           </div>
         </div>
-        <div className="p-2 bg-slate-800 rounded">
+        <div className="p-2 bg-slate-200 dark:bg-slate-800 rounded mb-14">
           <TitleSection title={"ســوال هــای ذخیره شده"} />
           <div className="mx-4 mt-8 pb-4">
             <ul className="flex flex-col gap-y-1">
