@@ -6,7 +6,9 @@ import Footer from "../Components/Footer/Footer";
 import baseApi from "../Configs/Axios";
 import LoadingSection from "../Components/LoadingSection/LoadingSection";
 import { showToastSuccess } from "../Configs/Toast";
+import NotFound from "../Components/NotFound/NotFound";
 const InsertQuestion = () => {
+  const { login } = useSelector((state) => state.authInfos);
   const { allCategories, loading } = useSelector(
     (state) => state.allCategories
   );
@@ -21,7 +23,6 @@ const InsertQuestion = () => {
 
   const insertQuestion = async (e) => {
     e.preventDefault();
-    e.preventDefault();
     const data = {
       categoryID,
       title,
@@ -30,7 +31,7 @@ const InsertQuestion = () => {
     baseApi
       .post("questions", data)
       .then((response) => {
-        showToastSuccess('پرسش شما ارسال شد')
+        showToastSuccess("پرسش شما ارسال شد");
         resetValues();
       })
       .catch((error) => {
@@ -38,13 +39,15 @@ const InsertQuestion = () => {
       });
   };
 
-  const resetValues = ()=>{
-    setTitle('');
-    setBody('');
-    setCategoryID('-1')
-  }
+  const resetValues = () => {
+    setTitle("");
+    setBody("");
+    setCategoryID("-1");
+  };
 
   if (loading) return <LoadingSection />;
+
+  if (!login) return <NotFound />;
 
   return (
     <>
@@ -88,8 +91,19 @@ const InsertQuestion = () => {
                   placeholder="متـن ســـوال"
                 ></textarea>
                 <button
+                  disabled={
+                    body.trim().length < 5 ||
+                    title.trim().length < 3 ||
+                    categoryID === "-1"
+                  }
                   onClick={insertQuestion}
-                  className="w-full bg-green-500 py-1 rounded text-slate-200 font-morabba-medium mt-1"
+                  className={`${
+                    body.trim().length < 5 ||
+                    title.trim().length < 3 ||
+                    categoryID === "-1"
+                      ? "bg-slate-400"
+                      : "bg-green-500"
+                  } w-full py-1 rounded text-slate-200 font-morabba-medium mt-1`}
                 >
                   ارســـال
                 </button>

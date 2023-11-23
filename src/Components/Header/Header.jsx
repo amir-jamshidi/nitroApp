@@ -1,8 +1,4 @@
-import {
-  AccountCircleRounded,
-  RocketLaunchRounded,
-  WbSunnyRounded,
-} from "@mui/icons-material";
+import { WbSunnyRounded } from "@mui/icons-material";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -15,20 +11,25 @@ const Header = () => {
         <div className="flex h-full">
           <div className="flex-1 flex h-full justify-start items-center">
             <div className="flex justify-center items-center gap-x-1">
-              <Link to={"/add-question"}>
+              <Link to={`${authInfos.login ? "/add-question" : "/login"}`}>
                 <button className="font-morabba-medium rounded-2xl text-slate-200 px-2 md:px-4 py-1.5 text-sm bg-green-500  dark:bg-violet-500">
                   ایجاد ســوال
                 </button>
               </Link>
               <span className=" h-[32px] w-[32px] flex justify-center items-center bg-slate-200 dark:bg-slate-700 rounded-full border border-black/10">
-                <WbSunnyRounded fontSize="small" className="text-slate-800 dark:text-slate-200 mt-0.5" />
+                <WbSunnyRounded
+                  fontSize="small"
+                  className="text-slate-800 dark:text-slate-200 mt-0.5"
+                />
               </span>
             </div>
           </div>
           <div className="h-full flex-1 flex justify-center items-center">
-            <span className="font-morabba-bold text-xl text-slate-800 dark:text-slate-200">
-              نیتــرو
-            </span>
+            <Link to={"/"}>
+              <span className="font-morabba-bold text-xl text-slate-800 dark:text-slate-200">
+                نیتــرو
+              </span>
+            </Link>
           </div>
 
           <div className="flex-1 flex justify-end items-center h-full">

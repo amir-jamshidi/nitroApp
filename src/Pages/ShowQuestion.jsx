@@ -21,6 +21,8 @@ const ShowQuestion = () => {
   const [body, setBody] = useState("");
   const { id } = useParams();
   const dispatch = useDispatch();
+  const { login } = useSelector((state) => state.authInfos);
+
   const { question, loading } = useSelector((state) => state.singleQuestion);
 
   useEffect(() => {
@@ -126,8 +128,7 @@ const ShowQuestion = () => {
           </div>
         </div>
         <div className="mt-8 bg-slate-200 dark:bg-slate-800 rounded p-2">
-        <div className="border-b border-b-black/5 dark:border-b-white/5 pb-2">
-
+          <div className="border-b border-b-black/5 dark:border-b-white/5 pb-2">
             <p className="font-morabba-medium text-center text text-slate-700 dark:text-slate-200 text-lg">
               پاسخ هــا
             </p>
@@ -180,20 +181,29 @@ const ShowQuestion = () => {
               ارســـال پاسخ
             </p>
           </div>
-          <form action="" className="mx-2 pb-4">
-            <textarea
-              className="w-full min-h-[200px] max-h-[250px] rounded mt-8 bg-slate-100 dark:bg-slate-700 p-2 font-morabba-medium text-slate-700 dark:text-slate-200 outline-none border-none"
-              placeholder="متن پاسخ شما ..."
-              value={body}
-              onChange={(e) => setBody(e.target.value)}
-            ></textarea>
-            <button
-              onClick={addNewAnswer}
-              className="w-full bg-green-500 py-1 rounded text-slate-200 font-morabba-medium"
-            >
-              ارسال پاسخ
-            </button>
-          </form>
+          {login ? (
+            <form action="" className="mx-2 pb-4">
+              <textarea
+                className="w-full min-h-[200px] max-h-[250px] rounded mt-8 bg-slate-100 dark:bg-slate-700 p-2 font-morabba-medium text-slate-700 dark:text-slate-200 outline-none border-none"
+                placeholder="متن پاسخ شما ..."
+                value={body}
+                onChange={(e) => setBody(e.target.value)}
+              ></textarea>
+              <button
+                disabled={body.trim().length < 3}
+                onClick={addNewAnswer}
+                className={`${
+                  body.trim().length < 3 ? "bg-slate-400" : "bg-green-500"
+                } w-full  py-1 rounded text-slate-200 font-morabba-medium`}
+              >
+                ارسال پاسخ
+              </button>
+            </form>
+          ) : (
+            <div className="flex justify-center items-center py-8">
+              <p>برای ارسال پاسخ لطفا وارد حساب کاربری شوید</p>
+            </div>
+          )}
         </div>
       </div>
       <Footer />
