@@ -1,37 +1,65 @@
+import {
+  HelpRounded,
+  MessageRounded,
+  VerifiedRounded,
+  WorkspacesRounded,
+} from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 const QuestionItem = ({ question }) => {
   return (
     <Link key={question._id} to={`/question/${question._id}`}>
       <li>
-        <div className="py-2 px-4 rounded bg-slate-700">
-          <div className="flex">
+        <div className="py-2 px-4 rounded bg-slate-100 border border-black/10 dark:border-white/5 dark:bg-slate-700 ">
+          <div className="flex flex-col lg:flex-row">
             <div className="flex-1 flex items-center gap-x-2">
               <img
                 src={`http://127.0.0.1:5000/media/profiles/${question.creatorID.avatar}`}
                 className="w-14 h-14 rounded-full shrink-0"
                 alt=""
               />
-              <p className="text-slate-200 font-morabba-medium text-base line-clamp-1">
+              <p className="text-slate-700 dark:text-slate-200 font-morabba-medium text-base line-clamp-1">
                 {question.title}
               </p>
             </div>
-            <div className="flex-1 flex items-center justify-end gap-x-1">
+            <div className="flex-1 flex-col md:flex-row items-end gap-y-1 mt-2 md:mt-0 flex md:items-center justify-end gap-x-1 ">
+              
               {question.isHasTrueAnswer ? (
-                <span className="bg-green-500 min-w-[105px] text-sm font-morabba-medium px-1 rounded text-slate-200">
-                  کاربر به جواب رسیده
-                </span>
+                <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px]">
+                  <VerifiedRounded
+                    sx={{ width: 18, height: 18 }}
+                    className="text-green-500"
+                    fontSize="small"
+                  />
+                  <span className="text-sm">پاسخ داده شد</span>
+                </div>
               ) : (
-                <span className="bg-red-500 min-w-[105px] text-sm font-morabba-medium px-1 rounded text-slate-200">
-                  کاربر به جواب نرسیده
-                </span>
+                <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px] md:min-w-[125px]">
+                  <HelpRounded
+                    sx={{ width: 18, height: 18 }}
+                    className="text-red-500"
+                    fontSize="small"
+                  />
+                  <span className="text-sm">بدون پاسخ درست</span>
+                </div>
               )}
-              <span className="min-w-[105px] text-center bg-violet-500 text-sm font-morabba-medium px-1 rounded text-slate-200">
-                {question.categoryID.title}
-              </span>
-              <span className="min-w-[65px] text-center bg-green-600 font-morabba-medium text-sm rounded px-2 text-slate-200">
-                پاسخ ها : {question.answerCount}
-              </span>
+              <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px] md:min-w-[120px]">
+                <WorkspacesRounded
+                  sx={{ width: 18, height: 18 }}
+                  className="text-violet-500"
+                  fontSize="small"
+                />
+                <span className="text-sm"> {question.categoryID.title}</span>
+              </div>
+
+              <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px] md:min-w-[80px]">
+                <MessageRounded
+                  sx={{ width: 18, height: 18 }}
+                  className="text-green-500"
+                  fontSize="small"
+                />
+                <span className="text-sm">{question.answerCount} پاسخ</span>
+              </div>
             </div>
           </div>
         </div>

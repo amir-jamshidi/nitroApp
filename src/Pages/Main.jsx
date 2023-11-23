@@ -1,7 +1,8 @@
 import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
 import LastedQuestions from "../Components/LastedQuestions/LastedQuestions";
-import Sidebar from "../Components/Sidebar/SideBar";
+import Sidebar from "../Components/Sidebar/Sidebar";
+import TitleSection from "../Components/TitleSection/TitleSection";
 
 const Main = () => {
   return (
@@ -11,11 +12,9 @@ const Main = () => {
         <div className="container">
           <div className="flex gap-x-3">
             <Sidebar />
-            <div className="flex-1 rounded bg-slate-800 p-2">
+            <div className="flex-1 rounded bg-slate-200 dark:bg-slate-800 p-2">
               <div className="border-b border-b-white/5 pb-2">
-                <p className="font-morabba-medium text-center text text-slate-200 text-lg">
-                  آخریــن سوالات
-                </p>
+                <TitleSection title={"اخــرین سوالات"} />
               </div>
 
               <section className="pt-8">
