@@ -49,15 +49,17 @@ const ShowQuestion = () => {
             </p>
           </div>
           <div className="flex justify-center mt-8">
-            <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px] md:min-w-[80px]">
+            <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 dark:border-white/5 rounded min-w-[125px] md:min-w-[80px]">
               <AccessTimeFilledRounded
                 sx={{ width: 18, height: 18 }}
                 className="text-green-500"
                 fontSize="small"
               />
               <div>
-                <span className="text-sm text-slate-700">ایجاد شده در </span>
-                <span className="text-sm font-dana-bold text-slate-700">
+                <span className="text-sm text-slate-700 dark:text-slate-300">
+                  ایجاد شده در{" "}
+                </span>
+                <span className="text-sm font-dana-bold text-slate-700 dark:text-slate-300">
                   12/11/402
                 </span>
               </div>
@@ -88,40 +90,49 @@ const ShowQuestion = () => {
               </div>
               <div className="flex mt-10 flex-col gap-y-1 md:flex-row justify-end gap-x-1 md:mt-3">
                 {question.isHasTrueAnswer ? (
-                  <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px]">
+                  <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 dark:border-white/10 rounded min-w-[125px]">
                     <VerifiedRounded
                       sx={{ width: 18, height: 18 }}
                       className="text-green-500"
                       fontSize="small"
                     />
-                    <span className="text-sm">پاسخ داده شد</span>
+                    <span className="text-sm text-slate-700 dark:text-slate-200">
+                      پاسخ داده شد
+                    </span>
                   </div>
                 ) : (
-                  <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px] md:min-w-[125px]">
+                  <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 dark:border-white/10 rounded min-w-[125px] md:min-w-[125px]">
                     <HelpRounded
                       sx={{ width: 18, height: 18 }}
                       className="text-red-500"
                       fontSize="small"
                     />
-                    <span className="text-sm">بدون پاسخ درست</span>
+                    <span className="text-sm text-slate-700 dark:text-slate-200">
+                      بدون پاسخ درست
+                    </span>
                   </div>
                 )}
-                <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px] md:min-w-[120px]">
+                <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 dark:border-white/10 rounded min-w-[125px] md:min-w-[120px]">
                   <WorkspacesRounded
                     sx={{ width: 18, height: 18 }}
                     className="text-violet-500"
                     fontSize="small"
                   />
-                  <span className="text-sm"> {question.categoryID?.title}</span>
+                  <span className="text-sm text-slate-700 dark:text-slate-200">
+                    {" "}
+                    {question.categoryID?.title}
+                  </span>
                 </div>
 
-                <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px] md:min-w-[80px]">
+                <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 dark:border-white/10 rounded min-w-[125px] md:min-w-[80px]">
                   <MessageRounded
                     sx={{ width: 18, height: 18 }}
                     className="text-green-500"
                     fontSize="small"
                   />
-                  <span className="text-sm">{question.answerCount} پاسخ</span>
+                  <span className="text-sm text-slate-700 dark:text-slate-200">
+                    {question.answerCount} پاسخ
+                  </span>
                 </div>
               </div>
             </div>
@@ -201,7 +212,9 @@ const ShowQuestion = () => {
             </form>
           ) : (
             <div className="flex justify-center items-center py-8">
-              <p>برای ارسال پاسخ لطفا وارد حساب کاربری شوید</p>
+              <p className="text-slate-700 dark:text-slate-200">
+                برای ارسال پاسخ لطفا وارد حساب کاربری شوید
+              </p>
             </div>
           )}
         </div>

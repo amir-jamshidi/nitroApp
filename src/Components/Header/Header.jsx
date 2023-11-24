@@ -21,11 +21,11 @@ const Header = () => {
               </Link>
               <span
                 onClick={() => dispatch(changeTheme())}
-                className=" h-[32px] w-[32px] flex justify-center items-center bg-slate-200 dark:bg-slate-700 rounded-full border border-black/10"
+                className=" h-[32px] w-[32px] flex justify-center cursor-pointer transition-colors hover:bg-slate-700 dark:hover:bg-slate-200  items-center bg-slate-200 dark:bg-slate-700 rounded-full border border-black/10"
               >
                 <WbSunnyRounded
                   fontSize="small"
-                  className="text-slate-800 dark:text-slate-200 mt-0.5"
+                  className="text-slate-800 dark:text-slate-200 mt-0.5 hover:text-slate-200  dark:hover:text-slate-800 transition-colors"
                 />
               </span>
             </div>

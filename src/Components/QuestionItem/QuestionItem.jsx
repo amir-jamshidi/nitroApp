@@ -23,42 +23,43 @@ const QuestionItem = ({ question }) => {
               </p>
             </div>
             <div className="flex-1 flex-col md:flex-row items-end gap-y-1 mt-2 md:mt-0 flex md:items-center justify-end gap-x-1 ">
-              
               {question.isHasTrueAnswer ? (
-                <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px]">
+                <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 dark:border-white/10 rounded min-w-[125px]">
                   <VerifiedRounded
                     sx={{ width: 18, height: 18 }}
                     className="text-green-500"
                     fontSize="small"
                   />
-                  <span className="text-sm">پاسخ داده شد</span>
+                  <span className="text-sm text-slate-800 dark:text-slate-200">پاسخ داده شد</span>
                 </div>
               ) : (
-                <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px] md:min-w-[125px]">
+                <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 dark:border-white/10 rounded min-w-[125px] md:min-w-[125px]">
                   <HelpRounded
                     sx={{ width: 18, height: 18 }}
                     className="text-red-500"
                     fontSize="small"
                   />
-                  <span className="text-sm">بدون پاسخ درست</span>
+                  <span className="text-sm text-slate-800 dark:text-slate-200">بدون پاسخ درست</span>
                 </div>
               )}
-              <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px] md:min-w-[120px]">
+              <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 dark:border-white/10 rounded min-w-[125px] md:min-w-[120px]">
                 <WorkspacesRounded
                   sx={{ width: 18, height: 18 }}
                   className="text-violet-500"
                   fontSize="small"
                 />
-                <span className="text-sm"> {question.categoryID.title}</span>
+                <span className="text-sm text-slate-800 dark:text-slate-200"> {question.categoryID.title}</span>
               </div>
 
-              <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 rounded min-w-[125px] md:min-w-[80px]">
+              <div className="py-1 px-2 gap-x-1 flex justify-center items-center border border-black/5 dark:border-white/10 rounded min-w-[125px] md:min-w-[80px]">
                 <MessageRounded
                   sx={{ width: 18, height: 18 }}
                   className="text-green-500"
                   fontSize="small"
                 />
-                <span className="text-sm">{question.answerCount} پاسخ</span>
+                <span className="text-sm text-slate-800 dark:text-slate-200">
+                  {question.answerCount} پاسخ
+                </span>
               </div>
             </div>
           </div>
