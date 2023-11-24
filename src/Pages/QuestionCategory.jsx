@@ -6,11 +6,13 @@ import baseApi from "./../Configs/Axios";
 import { useParams } from "react-router-dom";
 import QuestionItem from "./../Components/QuestionItem/QuestionItem";
 import LoadingSection from "../Components/LoadingSection/LoadingSection";
+import NotFound from './../Components/NotFound/NotFound';
 
 const QuestionCategory = () => {
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState({});
   const [questions, setQuestions] = useState([]);
+  const [isError, setIsError] = useState(false);
   useEffect(() => {
     getQuestions();
   }, []);
@@ -26,12 +28,16 @@ const QuestionCategory = () => {
         setLoading(false);
       })
       .catch((error) => {
+        if (error.response.status === 404) {
+          setIsError(true);
+        }
         setLoading(false);
       });
   };
 
   if (loading) return <LoadingSection />;
 
+  if(isError) return <NotFound/>
   return (
     <>
       <Header />
@@ -41,7 +47,9 @@ const QuestionCategory = () => {
           <div className="mt-8 pb-4">
             {questions.length === 0 ? (
               <div>
-                <p className="text-center text-slate-700">سوالی پرسیده نشده !</p>
+                <p className="text-center text-slate-700 dark:text-slate-300">
+                  سوالی پرسیده نشده !
+                </p>
               </div>
             ) : (
               <ul className="flex flex-col gap-y-1 px-4">

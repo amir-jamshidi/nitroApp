@@ -16,6 +16,7 @@ import {
 } from "@mui/icons-material";
 import Footer from "../Components/Footer/Footer";
 import LoadingSection from "../Components/LoadingSection/LoadingSection";
+import NotFound from "../Components/NotFound/NotFound";
 
 const ShowQuestion = () => {
   const [body, setBody] = useState("");
@@ -23,7 +24,9 @@ const ShowQuestion = () => {
   const dispatch = useDispatch();
   const { login } = useSelector((state) => state.authInfos);
 
-  const { question, loading } = useSelector((state) => state.singleQuestion);
+  const { question, loading, isError } = useSelector(
+    (state) => state.singleQuestion
+  );
 
   useEffect(() => {
     dispatch(getSingleQuestion(id));
@@ -37,6 +40,8 @@ const ShowQuestion = () => {
   };
 
   if (loading) return <LoadingSection />;
+  
+  if (isError) return <NotFound />;
 
   return (
     <>

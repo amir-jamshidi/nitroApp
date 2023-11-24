@@ -8,6 +8,7 @@ import { AlternateEmailRounded, PersonRounded } from "@mui/icons-material";
 import { useState } from "react";
 import userPanelSchema from "../Utils/userPanelSchema";
 import { showToastError, showToastSuccess } from "../Configs/Toast";
+import NotFound from './../Components/NotFound/NotFound';
 
 const Panel = () => {
   const authInfos = useSelector((state) => state.authInfos);
@@ -49,6 +50,8 @@ const Panel = () => {
       showToastError(error.message);
     }
   };
+
+  if(!authInfos.login) return <NotFound/>
 
   return (
     <>

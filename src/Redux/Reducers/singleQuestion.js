@@ -10,6 +10,7 @@ const slice = createSlice({
     name: 'singleQuestion',
     initialState: {
         loading: false,
+        isError: false,
         question: {}
     },
     extraReducers: builder => {
@@ -24,6 +25,13 @@ const slice = createSlice({
             showToastSuccess('پاسخ شما اضافه شد')
             state.question.answers.push(action.payload)
         })
+        builder.addCase(getSingleQuestion.rejected, (state, action) => {
+            if (action.error.message.includes('404')) {
+                state.loading = false
+                state.isError = true
+            }
+        })
+
     }
 })
 
