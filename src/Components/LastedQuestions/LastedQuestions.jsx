@@ -26,7 +26,7 @@ const LastedQuestions = () => {
       </ul>
       <Link to={"/questions"} className="flex mt-1">
         <button className="flex-1 mx-4 border bg-slate-300 text-slate-800 border-white/10 py-2 rounded dark:bg-transparent dark:text-slate-300 mb-3">
-          همـــه سوالا هــا
+          همـــه سوال هــا
         </button>
       </Link>
     </div>

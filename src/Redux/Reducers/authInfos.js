@@ -9,6 +9,7 @@ const slice = createSlice({
     initialState: {
         login: false,
         userInfo: null,
+        theme: localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light',
         questions: [],
         saveQuestions: []
     },
@@ -18,6 +19,17 @@ const slice = createSlice({
         },
         setUserInfo: (state, action) => {
             state.userInfo = action.payload
+        },
+        changeTheme: (state, action) => {
+
+
+            if (state.theme === 'light') {
+                localStorage.setItem('theme', 'dark')
+                state.theme = 'dark'
+            } else {
+                localStorage.setItem('theme', 'light')
+                state.theme = 'light'
+            }
         }
     }
     ,
@@ -35,5 +47,5 @@ const slice = createSlice({
     }
 })
 
-export const { setIsLogin, setUserInfo } = slice.actions;
+export const { setIsLogin, setUserInfo, changeTheme } = slice.actions;
 export default slice.reducer;

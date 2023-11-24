@@ -1,9 +1,12 @@
 import { WbSunnyRounded } from "@mui/icons-material";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { changeTheme } from "../../Redux/Reducers/authInfos";
 
 const Header = () => {
   const authInfos = useSelector((state) => state.authInfos);
+  const dispatch = useDispatch();
 
   return (
     <header className="h-16 dark:bg-slate-800 bg-slate-200 border-b border-b-white/10">
@@ -16,7 +19,10 @@ const Header = () => {
                   ایجاد ســوال
                 </button>
               </Link>
-              <span className=" h-[32px] w-[32px] flex justify-center items-center bg-slate-200 dark:bg-slate-700 rounded-full border border-black/10">
+              <span
+                onClick={() => dispatch(changeTheme())}
+                className=" h-[32px] w-[32px] flex justify-center items-center bg-slate-200 dark:bg-slate-700 rounded-full border border-black/10"
+              >
                 <WbSunnyRounded
                   fontSize="small"
                   className="text-slate-800 dark:text-slate-200 mt-0.5"

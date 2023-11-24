@@ -31,7 +31,7 @@ const Categories = () => {
                 <Link to={`/category/${category.href}`}>
                   <div className="flex justify-start items-center gap-x-2 p-2 rounded hover:bg-slate-700 transition-colors">
                     <span className="w-3 h-3 inline-block bg-blue-500 rounded-full"></span>
-                    <p className=" text-slate-800 drak:text-gray-200">
+                    <p className=" text-slate-800 dark:text-gray-200">
                       {category.title}
                     </p>
                   </div>
