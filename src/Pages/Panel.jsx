@@ -5,14 +5,18 @@ import QuestionItem from "../Components/QuestionItem/QuestionItem";
 import { editUserInfo, getMe } from "../Redux/Reducers/authInfos";
 import baseApi from "./../Configs/Axios";
 import { AlternateEmailRounded, PersonRounded } from "@mui/icons-material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import userPanelSchema from "../Utils/userPanelSchema";
 import { showToastError, showToastSuccess } from "../Configs/Toast";
-import NotFound from './../Components/NotFound/NotFound';
+import NotFound from "./../Components/NotFound/NotFound";
 
 const Panel = () => {
   const authInfos = useSelector((state) => state.authInfos);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMe());
+  }, []);
 
   const [fullname, setFullname] = useState(authInfos?.userInfo?.fullname);
   const [email, setEmail] = useState(authInfos?.userInfo?.email);
@@ -31,6 +35,7 @@ const Panel = () => {
         console.log(error);
       });
   };
+
   const editInfos = async (e) => {
     e.preventDefault();
     const newValues = {
@@ -51,7 +56,7 @@ const Panel = () => {
     }
   };
 
-  if(!authInfos.login) return <NotFound/>
+  if (!authInfos.login) return <NotFound />;
 
   return (
     <>
@@ -78,10 +83,11 @@ const Panel = () => {
               </label>
             </div>
             <div className="mt-8">
-
               <div className="flex items-center">
                 <span className="flex-1 h-[1px] bg-white/5"></span>
-                <span className="mx-2 text-slate-800 dark:text-slate-300">ویرایش اطلاعات</span>
+                <span className="mx-2 text-slate-800 dark:text-slate-300">
+                  ویرایش اطلاعات
+                </span>
                 <span className="flex-1 h-[1px] bg-white/5"></span>
               </div>
 
@@ -129,24 +135,40 @@ const Panel = () => {
         <div className="p-2 bg-slate-200 dark:bg-slate-800 rounded mb-8">
           <TitleSection title={"اخرین پرسش هــای من"} />
           <div className="mx-4 mt-8 pb-4">
-            <ul className="flex flex-col gap-y-1">
-              {authInfos?.questions?.map((question) => (
-                <QuestionItem key={question._id} question={question} />
-              ))}
-            </ul>
+            {authInfos?.questions?.length !== 0 ? (
+              <ul className="flex flex-col gap-y-1">
+                {authInfos?.questions?.map((question) => (
+                  <QuestionItem key={question._id} question={question} />
+                ))}
+              </ul>
+            ) : (
+              <div className="p-4">
+                <p className="text-center text-slate-700 dark:text-slate-300">
+                  سوالی ذخیره نکردید
+                </p>
+              </div>
+            )}
           </div>
         </div>
         <div className="p-2 bg-slate-200 dark:bg-slate-800 rounded mb-14">
           <TitleSection title={"ســوال هــای ذخیره شده"} />
           <div className="mx-4 mt-8 pb-4">
-            <ul className="flex flex-col gap-y-1">
-              {authInfos?.saveQuestions?.map((question) => (
-                <QuestionItem
-                  key={question._id}
-                  question={question.questionID}
-                />
-              ))}
-            </ul>
+            {authInfos?.saveQuestions?.length !== 0 ? (
+              <ul className="flex flex-col gap-y-1">
+                {authInfos?.saveQuestions?.map((question) => (
+                  <QuestionItem
+                    key={question._id}
+                    question={question.questionID}
+                  />
+                ))}
+              </ul>
+            ) : (
+              <div className="p-4">
+                <p className="text-center text-slate-700 dark:text-slate-300">
+                  سوالی ذخیره نکردید
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>

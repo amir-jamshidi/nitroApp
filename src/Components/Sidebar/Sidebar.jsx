@@ -18,7 +18,7 @@ const Sidebar = () => {
 
   return (
     <div>
-      <aside className="hidden lg:flex flex-col w-80 bg-slate-100 border border-black/10 dark:border-white/5 dark:bg-slate-800 rounded p-2">
+      <aside className="hidden lg:flex flex-col w-80 bg-slate-100 border border-black/5 dark:border-white/5 dark:bg-slate-800 rounded p-2">
         <TitleSection title={"دسته بندی سوالات"} />
         <div>
           <ul className="mb-3 mt-8 mx-2 flex flex-col divide-y divide-black/5 dark:divide-white/5 ">
