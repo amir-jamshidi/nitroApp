@@ -33,7 +33,7 @@ const Header = () => {
           <div className="h-full flex-1 flex justify-center items-center">
             <Link to={"/"}>
               <span className="font-morabba-bold text-xl text-slate-800 dark:text-slate-200">
-                نیتــرو
+                نیتـــرو
               </span>
             </Link>
           </div>
