@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="flex justify-center items-center">
           <p className="dark:text-slate-200 text-slate-800 font-morabba-bold">
             طراحی شده با
-            <FavoriteRounded className="text-red-500 mx-1" />
+            <FavoriteRounded className="text-red-500 mx-2" />
             توسط دِوامـــیر
           </p>
         </div>
