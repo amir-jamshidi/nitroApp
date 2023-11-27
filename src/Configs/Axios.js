@@ -9,8 +9,8 @@ baseApi.interceptors.request.use((config) => {
     if (localStorage.getItem('auth')) {
         token = JSON.parse(localStorage.getItem('auth')).token
     }
-    config.headers.Authorization = `Bearer ${token}`
-    return config
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
 })
 
 
