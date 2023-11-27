@@ -5,4 +5,4 @@ let userPanelSchema = object({
     email: string('لطفا ایمیل رو به درستی وارد کنید').email("فرمت ایمیل درست نیست").min(5, 'ایمیل حداقل باید 5 کاراکتر باشه').max(100, 'ایمیل حداکثر باید 100 کاراکتر باشه').required('لطفا ایمیل رو وارد کنید'),
 });
 
-export default userPanelSchema
+export default userPanelSchema;
