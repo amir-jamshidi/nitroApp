@@ -4,7 +4,9 @@ import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMe } from "./Redux/Reducers/authInfos";
+
 function App() {
+  
   const authInfos = useSelector((state) => state.authInfos);
   const routerApplication = useRoutes(routes);
   const dispatch = useDispatch();
