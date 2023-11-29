@@ -14,7 +14,7 @@ const Sidebar = () => {
     dispatch(getMainCategories());
   }, []);
 
-  if (loading) return <LoadingSection />;
+  if (loading) return ( <LoadingSection />);
 
   return (
     <div>
