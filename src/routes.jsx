@@ -9,6 +9,7 @@ import QuestionCategory from "./Pages/QuestionCategory";
 import Panel from "./Pages/Panel";
 import NotFound from "./Components/NotFound/NotFound";
 
+
 const routes = [
   { path: "/", element: <Main /> },
   { path: "/login", element: <Login /> },
