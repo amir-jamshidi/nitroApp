@@ -9,7 +9,7 @@ import { getMe } from "./Redux/Reducers/authInfos";
 
 function App() {
   
-  const authInfos = useSelector((state) => state.authInfos);
+  const authInfos = useSelector((state) =>     state.authInfos);
   const routerApplication = useRoutes(routes);
   const dispatch = useDispatch();
 
